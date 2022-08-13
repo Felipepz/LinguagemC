@@ -1,0 +1,2 @@
+Este 908889 texto tem números  e caracteres;
+o outro arquivo só caracteres alfabeticos
