@@ -1,45 +1,38 @@
-#include <stdio.h> 
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-int main(){
+int main(void)
+{
+  FILE *pont_entrada;
+  FILE *pont_saida;
+  FILE *pont_saida2;
+  char c;
 
-  FILE *entradaPtr; 
-  FILE *saidaPtr; 
-  FILE *saida2Ptr;
-   
-  char letra;
-  char texto[100];
-
-  entradaPtr = fopen("entrada.txt","r");
-  saidaPtr = fopen("saida.txt","w");
-  saida2Ptr = fopen("saida2.txt","w");
-
-  if ((entradaPtr  == NULL) && (saidaPtr == NULL) && (saida2Ptr == NULL) )
-  {
-      printf("arquivo não pode ser aberto");
-      return 0;
-  }
+  pont_entrada = fopen("entrada.txt","r");
+  pont_saida = fopen("saida.txt","w");
+  pont_saida2 = fopen("saida2.txt","w");
   
-  printf("letras digitadas:%c\n",letra); 
-  fscanf(entradaPtr,"%c", &letra); 
-
-  while (!feof(entradaPtr)){  
-    if (letra < '0' || letra > '9'){
-      fprintf(saidaPtr,"%c",letra); 
-    } 
-    if (letra >= '0' && letra <= '9'){
-      fprintf(saida2Ptr,"%c",letra);
-    }  
-    if (letra==' ') {
+  
+  if ((pont_entrada == NULL) && (pont_saida == NULL) && (pont_saida2 == NULL) ){
+    printf("Erro ao tentar abrir o arquivo!");
+    return 0;
+  } else {
+    int i = 0;
+    fscanf(pont_entrada, "%c", &c);
+    while(!feof(pont_entrada)){
+      if(c < '0' || c > '9' ){
+        fprintf(pont_saida,"%c", c );
+      }
+      if((c > 47) && (c < 58)){
+        fprintf(pont_saida2, "%c", c);
+      }
+      fscanf(pont_entrada, "%c", &c);
     
-
+      i++;
     }
-    fscanf(entradaPtr,"%c",&letra);
+    
   }
- fclose(saidaPtr); 
- fclose(saida2Ptr);
- fclose(entradaPtr);
-
-return 0;
-
-}
+  fclose(pont_entrada);
+  fclose(pont_saida);
+ }
+ 
